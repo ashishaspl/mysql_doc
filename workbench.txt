@@ -1,0 +1,12 @@
+			Installing MySQL Workbench
+
+	steps:			
+ 1. for apt update:	:sudo apt update && sudo apt upgrade
+ 2. download workbench	:sudo apt install mysql-workbench
+ 3. download path 	:cd Downloads
+ 4. install 		:sudo apt install ./mysql-apt-config_0.8.22-1_all.deb
+ 5. apt update		:sudo apt update
+ 6. install for run 	:sudo apt install mysql-workbench-community
+ 7. open  		:
+ 
+ all step in google this link: https://phoenixnap.com/kb/mysql-workbench-ubuntu

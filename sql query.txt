@@ -1,0 +1,59 @@
+ 
+
+CREATE TABLE model(model_id INT PRIMARY KEY,model_name VARCHAR(55),model_number VARCGAR(15),manufacturing_date VARCHAR(10));
+
+CREATE TABLE category (id INT AUTO_INCREMENT PRIMARY KEY,
+	order_id INT AUTO_INCREMENT PRIMARY KEY,
+	customer_id INT,
+	amount DOUBLE,
+	FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
+
+
+CREATE TABLE category (category_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT(6) UNSIGNED,make_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id));
+
+
+ALTER TABLE category
+ADD category_type VARCHAR(15),
+ADD FOREIGN KEY (make_id) REFERENCES make(id),
+ADD FOREIGN KEY (model_id) REFERENCES model(id);
+
+
+
+CREATE TABLE make (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    company_name VARCHAR(50),
+    model_name VARCHAR(55),
+    model_number VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE model (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    model_type VARCHAR(20),
+    manufacturing_date DATE,
+    model_price VARCHAR(10) NOT NULL
+);
+
+
+CREATE TABLE item (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category_id INT,
+    item_name VARCHAR(55),
+    item_manufacturing_date DATE,
+    FOREIGN KEY (category_id) REFERENCES category(category_id)
+);
+
+
+
+ALTER TABLE category
+ADD category_type VARCHAR(15),
+ADD FOREIGN KEY (make_id) REFERENCES make(id),
+ADD FOREIGN KEY (model_id) REFERENCES model(id);
+
+FOR DELETE OR ADD COLUMN IN TABLE 
+ALTER TABLE user
+Add email VARCHAR(30);
+
+FOR DELETE OR DROP COLUMN IN TABLE 
+ALTER TABLE user DROP COLUMN email;

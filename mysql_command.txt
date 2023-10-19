@@ -1,0 +1,53 @@
+Install command: sudo apt install mysql-server
+status 		: sudo systemctl status mysql
+start		: sudo systemctl start mysql
+
+ when inactivati error show and that code remove mysql and re installed.
+	1.sudo apt autoremove --purge mysql-server\* mariadb-server\*
+	2.sudo rm -rf /var/lib/mysql
+	3.sudo rm -rf /etc/mysql/
+	4.sudo mkdir -p /etc/mysql/conf.d
+	5.sudo apt install mysql-server
+	
+username and password change
+	Step 1: sudo mysqld_safe --skip-grant-tables &
+	Step 2: mysql -uroot
+	Step 3: use mysql;
+	Step 4: update user set authentication_string=PASSWORD("mynewpassword") where User='root';
+	Step 5: flush privileges;
+	Step 6: quit.
+	Step 7: sudo /etc/init.d/mysql restart
+	Step 8: mysql -u root -p
+
+
+*login in mysql by cli*
+
+1. login		:mysql -u root -p
+2. database create 	:CREATE DATABASE tutorial_database;
+	note:tutorial_database that is database name ,your give anyas database name.
+	
+3.show all database	:SHOW DATABASES;
+4.delete database	: DROP DATABASE database_name;
+5.Selecting Database	: USE database_name;
+6.show created table 	:DESCRIBE Aspl_data;
+7.Removing Table	:DROP TABLE [IF EXISTS] table_name;
+8.Rename Table		:ALTER TABLE table_name RENAME TO new_table_name;
+9.SHOW TABLE IN DATABASE:SHOW TABLES;
+
+
+ADD NEW USER		:CREATE USER 'ashish'@'localhost' IDENTIFIED BY 'your_password_here';
+
+
+creat new table using other table detail
+0. create a new table   : CREATE TABLE TABLENAME (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+				firstname VARCHAR(30) NOT NULL,lastname VARCHAR(30) NOT NULL,email VARCHAR(50),
+				reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
+
+1.CREATE TABLE Aspl_data_update AS SELECT firstname, lastname FROM Aspl_data;
+2.temporary table is created by  : CREATE TEMPORARY TABLE
+3.Create Temporary Table	 : CREATE TEMPORARY TABLE credits(customerNumber INT PRIMARY KEY, creditLimit DEC(10,2));
+4.Dropping Temporary Table	 :DROP TEMPORARY TABLE table_name;
+
+
+
+

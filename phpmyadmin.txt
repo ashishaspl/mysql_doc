@@ -1,0 +1,67 @@
+ installation phpmyadmin database
+ 
+1. wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip 
+2. unzip phpMyAdmin-5.2.0-all-languages.zip 
+3. sudo mv phpMyAdmin-5.2.0-all-languages /usr/share/phpmyadmin 
+
+create tmp directory and set the proper permissions
+
+4.sudo mkdir /usr/share/phpmyadmin/tmp 
+5.sudo chown -R www-data:www-data /usr/share/phpmyadmin 
+6.sudo chmod 777 /usr/share/phpmyadmin/tmp 
+
+Configure phpMyAdmin ::Create an Apache configuration file for phpMyAdmin and edit it in a text editor:
+
+7.sudo vim /etc/apache2/conf-available/phpmyadmin.conf 
+
+open vim and add that c	ode 
+
+	Alias /phpmyadmin /usr/share/phpmyadmin
+	Alias /phpMyAdmin /usr/share/phpmyadmin
+ 
+	<Directory /usr/share/phpmyadmin/>
+   	AddDefaultCharset UTF-8
+   	<IfModule mod_authz_core.c>
+      	<RequireAny>
+      	Require all granted
+     	</RequireAny>
+   	</IfModule>
+	</Directory>
+ 
+	<Directory /usr/share/phpmyadmin/setup/>
+   	<IfModule mod_authz_core.c>
+     	<RequireAny>
+       	Require all granted
+     	</RequireAny>
+   	</IfModule>
+	</Directory>
+	
+	press esc and : then wrie wq 
+	
+	
+After making all the changes, make sure to start the Apache service to reload all settings.
+	
+8. sudo a2enconf phpmyadmin 
+9. sudo systemctl restart apache2 
+
+ – Create a MySQL Database and User
+ 
+ ->run that step and change username and password
+ 
+10.  mysql> CREATE DATABASE  aspl;
+	Query OK, 1 row affected (0.01 sec)
+ 
+11. 	mysql> CREATE USER 'ashishb'@'localhost' IDENTIFIED BY 'Ashish@123';
+	Query OK, 0 rows affected (0.01 sec)
+ 
+12.	mysql> GRANT ALL ON tecadmin.* TO 'ashishb'@'localhost';
+	Query OK, 0 rows affected (0.01 sec)
+
+=> Access phpMyAdmin
+
+http://http://192.168.100.19//phpmyadmin   //ip will be your pc
+
+=> given all grant to user same as root;
+	GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'ashishb'@'localhost' WITH GRANT OPTION;
+	
+	
